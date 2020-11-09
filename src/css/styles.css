@@ -10,12 +10,14 @@
 
 body {
   overflow-x: hidden;
+  padding: 0 10px;
 }
 
 header {
   display: flex;
   align-items: center;
-  height: 7vh;
+  min-height: 7vh;
+  padding: 10px 0;
 }
 
 .logo {
@@ -60,4 +62,26 @@ header {
 
 .main-nav li:hover {
   background-color: rgba(0, 0, 0, 0.062);
+}
+
+main {
+  min-height: 85vh;
+  padding-top: 20px;
+}
+
+.city-search-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: auto;
+}
+
+.city-search-form input {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+
+footer {
+  min-height: 1vh;
 }
