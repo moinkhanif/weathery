@@ -96,6 +96,7 @@ main {
 
 .city-search-form input[type="submit"] {
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .loader {

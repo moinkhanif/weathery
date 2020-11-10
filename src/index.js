@@ -26,10 +26,10 @@ const ami = async (e, word) => {
   removeAllChildNodes(ul);
   json.places.forEach(place => {
     const citySelect = ul.appendChild(document.createElement('li'));
-    citySelect.innerHTML = place.description;
-    cities[place.description] = place;
+    citySelect.innerHTML = place.display_name;
+    cities[place.display_name] = place;
     citySelect.addEventListener('click', (city) => {
-      e.target.value = cities[city.target.textContent].description;
+      e.target.value = cities[city.target.textContent].display_name;
       removeAllChildNodes(ul);
     });
   });
@@ -40,6 +40,12 @@ document.querySelector('.main-nav').addEventListener('click', (e) => {
     e.target.querySelector('.main-nav ul').classList.toggle('nav-appear');
   }
 });
+
+document.querySelector('.city-search-form input[type="submit"]').addEventListener('click', (e) => {
+  e.preventDefault();
+  const chosenCity = document.querySelector('.city-search-input').value;
+  alert(chosenCity)
+})
 
 let timeout;
 document.querySelector('.city-search-input').addEventListener('input', (e) => {
@@ -54,6 +60,6 @@ document.querySelector('.city-search-input').addEventListener('input', (e) => {
     iniLi.appendChild(document.createElement('div'));
     timeout = setTimeout(() => {
       ami(e, word);
-    }, 1000);
+    }, 600);
   }
 });
