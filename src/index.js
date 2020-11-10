@@ -48,9 +48,10 @@ document.querySelector('.city-search-input').addEventListener('input', (e) => {
   const ul = label.childNodes[1];
   const word = e.target.value;
   removeAllChildNodes(ul);
-  if (word === '' || word.length >= 2) {
+  if (word !== '' && word.length >= 2) {
     const iniLi = ul.appendChild(document.createElement('li'));
     iniLi.classList.add('loader');
+    iniLi.appendChild(document.createElement('div'));
     timeout = setTimeout(() => {
       ami(e, word);
     }, 1000);
