@@ -30,7 +30,7 @@ header {
   height: 35px;
   width: 35px;
   cursor: pointer;
-  background-image: url('../img/list.svg');
+  background-image: url("../img/list.svg");
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -60,6 +60,13 @@ header {
   padding: 20px 40px;
 }
 
+.city-search-form label li {
+  padding: 20px 30px;
+  cursor: pointer;
+  background-color: rgb(241, 241, 241);
+  border-bottom: 2px solid rgb(211, 211, 211);
+}
+
 .main-nav li:hover {
   background-color: rgba(0, 0, 0, 0.062);
 }
@@ -76,10 +83,19 @@ main {
   margin: auto;
 }
 
-.city-search-form input {
+.city-search-form input,
+.city-search-input {
   width: 100%;
-  margin-bottom: 20px;
   padding: 10px 20px;
+}
+
+.city-search-input {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.city-search-form input[type="submit"] {
+  margin-top: 20px;
 }
 
 footer {
