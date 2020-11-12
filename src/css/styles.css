@@ -11,6 +11,7 @@
 body {
   overflow-x: hidden;
   padding: 0 10px;
+  background-color: #fff8ee;
 }
 
 header {
@@ -24,6 +25,12 @@ header {
   width: 80vw;
   text-align: center;
   font-size: 1.7rem;
+  font-family: 'Merienda', cursive;
+}
+
+.logo a,
+.weather-div h2 {
+  color: #c25b05;
 }
 
 .main-nav {
@@ -58,6 +65,10 @@ header {
 .main-nav li {
   margin: 10px auto;
   padding: 20px 40px;
+}
+
+.info-div li {
+  margin: 10px auto;
 }
 
 .city-search-form label li {
@@ -127,11 +138,19 @@ main {
   animation: spin 2s linear infinite;
 }
 
+.weather-div {
+  text-align: center;
+}
+
+.weather-div h2 {
+  margin: 25px auto;
+}
+
 .weather-depict {
   height: 200px;
   width: 200px;
   background-color: #3498db;
-  margin: 50px auto 25px;
+  margin: 25px auto;
 }
 
 /* Safari */

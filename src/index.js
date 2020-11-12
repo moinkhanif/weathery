@@ -23,12 +23,18 @@ const showWeatherDetails = (weatherDetails) => {
   const main = document.querySelector('main');
   const weatherDiv = main.childNodes[1];
   removeAllChildNodes(weatherDiv);
+  const placeTitle = weatherDiv.appendChild(document.createElement('h2'));
+  placeTitle.textContent = weatherDetails.name;
   const weatherDepict = weatherDiv.appendChild(document.createElement('div'));
   weatherDepict.classList.add('weather-depict');
   const infoDiv = weatherDiv.appendChild(document.createElement('ul'));
   infoDiv.classList.add('info-div');
   const li1 = infoDiv.appendChild(document.createElement('li'));
   li1.textContent = `Temperature: ${weatherDetails.main.temp}°${tempSign}`;
+  const li2 = infoDiv.appendChild(document.createElement('li'));
+  li2.textContent = `Weather description: ${weatherDetails.weather[0].description}`;
+  const li3 = infoDiv.appendChild(document.createElement('li'));
+  li3.textContent = `Wind Speed: ${weatherDetails.wind.speed}m/s`;
 };
 
 const weatherDetails = async (place) => {
