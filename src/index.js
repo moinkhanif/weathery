@@ -23,31 +23,41 @@ const showWeatherDetails = (weatherDetails) => {
   const main = document.querySelector('main');
   const weatherDiv = main.childNodes[1];
   removeAllChildNodes(weatherDiv);
-  const placeTitle = weatherDiv.appendChild(document.createElement('h2'));
-  placeTitle.textContent = weatherDetails.name;
-  const weatherDepict = weatherDiv.appendChild(document.createElement('div'));
-  weatherDepict.classList.add('weather-depict');
-  const infoDiv = weatherDiv.appendChild(document.createElement('ul'));
-  infoDiv.classList.add('info-div');
-  const li1 = infoDiv.appendChild(document.createElement('li'));
-  li1.textContent = `Temperature: ${weatherDetails.main.temp}°${tempSign}`;
-  const li2 = infoDiv.appendChild(document.createElement('li'));
-  li2.textContent = `Weather description: ${weatherDetails.weather[0].description}`;
-  const li3 = infoDiv.appendChild(document.createElement('li'));
-  li3.textContent = `Wind Speed: ${weatherDetails.wind.speed}m/s`;
+  if (weatherDetails.message) {
+    const error = weatherDiv.appendChild(document.createElement('p'));
+    error.className = 'fetch-error';
+    error.textContent = `Error! ${weatherDetails.message}`;
+  } else {
+    const placeTitle = weatherDiv.appendChild(document.createElement('h2'));
+    placeTitle.textContent = weatherDetails.name;
+    const weatherDepict = weatherDiv.appendChild(document.createElement('img'));
+    weatherDepict.classList.add('weather-depict');
+
+    const gif = weatherDetails.gify.data[Math.floor(Math.random() * 10)];
+    weatherDepict.setAttribute('src', gif.images.original.url);
+
+    const infoDiv = weatherDiv.appendChild(document.createElement('ul'));
+    infoDiv.classList.add('info-div');
+    const li1 = infoDiv.appendChild(document.createElement('li'));
+    li1.innerHTML = `<b>Temperature</b>: ${weatherDetails.main.temp}°${tempSign}`;
+    const li2 = infoDiv.appendChild(document.createElement('li'));
+    li2.innerHTML = `<b>Weather description</b>: ${weatherDetails.weather[0].description}`;
+    const li3 = infoDiv.appendChild(document.createElement('li'));
+    li3.innerHTML = `<b>Wind Speed</b>: ${weatherDetails.wind.speed}m/s`;
+  }
 };
 
 const weatherDetails = async (place) => {
   const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options({ place }));
   const json = await resp.json();
   const { weatherInfo } = json;
-  console.log(weatherInfo);
   showWeatherDetails(weatherInfo);
 };
 
 const ami = async (e, instantPlace) => {
   const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options({ instantPlace }));
   const json = await resp.json();
+  console.log(json);
   const label = e.target.parentElement;
   const ul = label.childNodes[1];
   const cities = {};
@@ -71,7 +81,10 @@ document.querySelector('.main-nav').addEventListener('click', (e) => {
 
 document.querySelector('.city-search-form input[type="submit"]').addEventListener('click', (e) => {
   e.preventDefault();
-  const chosenCity = document.querySelector('.city-search-input').value;
+  const chosenText = document.querySelector('.city-search-input').value.split(', ');
+  const chosenFirst = chosenText[0].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const chosenLast = chosenText[chosenText.length - 1].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const chosenCity = `${chosenFirst}, ${chosenLast}`;
   weatherDetails(chosenCity);
 });
 

@@ -44,7 +44,7 @@ header {
 
 .main-nav ul {
   position: absolute;
-  margin-top: 7vh;
+  margin-top: 9vh;
   height: 93vh;
   width: 100%;
   display: flex;
@@ -65,6 +65,13 @@ header {
 .main-nav li {
   margin: 10px auto;
   padding: 20px 40px;
+}
+
+.fetch-error {
+  color: red;
+  margin: 50px auto;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .info-div li {
@@ -150,7 +157,7 @@ main {
   height: 200px;
   width: 200px;
   background-color: #3498db;
-  margin: 25px auto;
+  margin: auto;
 }
 
 /* Safari */
