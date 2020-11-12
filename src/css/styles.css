@@ -74,13 +74,25 @@ header {
 main {
   min-height: 85vh;
   padding-top: 20px;
+  max-width: 80%;
+  margin: auto;
 }
 
 .city-search-form {
   display: flex;
   flex-direction: column;
-  max-width: 80%;
-  margin: auto;
+  max-height: 100%;
+  transition: max-height 0.55s ease-out;
+  overflow-y: hidden;
+}
+
+.city-search-form.shrink {
+  max-height: 70px;
+  transition: max-height 0.55s ease-in;
+}
+
+.city-search-form.shrink textarea {
+  padding-bottom: 0;
 }
 
 .city-search-form input,
@@ -113,6 +125,13 @@ main {
   height: 100%;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+}
+
+.weather-depict {
+  height: 200px;
+  width: 200px;
+  background-color: #3498db;
+  margin: 50px auto 25px;
 }
 
 /* Safari */

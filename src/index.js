@@ -3,12 +3,14 @@ import './css/styles.css';
 
 const fetch = require('node-fetch');
 
-const options = (instantPlace) => ({
+const tempSign = 'C';
+
+const options = ({ instantPlace = {}, place = {} }) => ({
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ instantPlace }),
+  body: JSON.stringify({ instantPlace, place }),
 });
 
 const removeAllChildNodes = (parent) => {
@@ -17,8 +19,28 @@ const removeAllChildNodes = (parent) => {
   }
 };
 
-const ami = async (e, word) => {
-  const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options(word));
+const showWeatherDetails = (weatherDetails) => {
+  const main = document.querySelector('main');
+  const weatherDiv = main.childNodes[1];
+  removeAllChildNodes(weatherDiv);
+  const weatherDepict = weatherDiv.appendChild(document.createElement('div'));
+  weatherDepict.classList.add('weather-depict');
+  const infoDiv = weatherDiv.appendChild(document.createElement('ul'));
+  infoDiv.classList.add('info-div');
+  const li1 = infoDiv.appendChild(document.createElement('li'));
+  li1.textContent = `Temperature: ${weatherDetails.main.temp}°${tempSign}`;
+};
+
+const weatherDetails = async (place) => {
+  const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options({ place }));
+  const json = await resp.json();
+  const { weatherInfo } = json;
+  console.log(weatherInfo);
+  showWeatherDetails(weatherInfo);
+};
+
+const ami = async (e, instantPlace) => {
+  const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options({ instantPlace }));
   const json = await resp.json();
   const label = e.target.parentElement;
   const ul = label.childNodes[1];
@@ -44,8 +66,8 @@ document.querySelector('.main-nav').addEventListener('click', (e) => {
 document.querySelector('.city-search-form input[type="submit"]').addEventListener('click', (e) => {
   e.preventDefault();
   const chosenCity = document.querySelector('.city-search-input').value;
-  alert(chosenCity)
-})
+  weatherDetails(chosenCity);
+});
 
 let timeout;
 document.querySelector('.city-search-input').addEventListener('input', (e) => {
