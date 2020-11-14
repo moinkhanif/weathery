@@ -69,9 +69,12 @@ header {
 
 .fetch-error {
   color: red;
-  margin: 50px auto;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.weather-div .fetch-error {
+  margin: 50px auto;
 }
 
 .info-div li {

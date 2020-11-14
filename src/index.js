@@ -62,15 +62,23 @@ const ami = async (e, instantPlace) => {
   const ul = label.childNodes[1];
   const cities = {};
   removeAllChildNodes(ul);
-  json.places.forEach(place => {
-    const citySelect = ul.appendChild(document.createElement('li'));
-    citySelect.innerHTML = place.display_name;
-    cities[place.display_name] = place;
-    citySelect.addEventListener('click', (city) => {
-      e.target.value = cities[city.target.textContent].display_name;
-      removeAllChildNodes(ul);
+  if (json.places.error) {
+    const errorLi = ul.appendChild(document.createElement('li'));
+    errorLi.textContent = 'City not found!';
+    errorLi.className = 'fetch-error';
+    label.setAttribute('data-validity', 'false');
+  } else {
+    label.setAttribute('data-validity', 'true')
+    json.places.forEach(place => {
+      const citySelect = ul.appendChild(document.createElement('li'));
+      citySelect.textContent = place.display_name;
+      cities[place.display_name] = place;
+      citySelect.addEventListener('click', (city) => {
+        e.target.value = cities[city.target.textContent].display_name;
+        removeAllChildNodes(ul);
+      });
     });
-  });
+  }
 };
 
 document.querySelector('.main-nav').addEventListener('click', (e) => {
@@ -81,11 +89,15 @@ document.querySelector('.main-nav').addEventListener('click', (e) => {
 
 document.querySelector('.city-search-form input[type="submit"]').addEventListener('click', (e) => {
   e.preventDefault();
-  const chosenText = document.querySelector('.city-search-input').value.split(', ');
-  const chosenFirst = chosenText[0].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const chosenLast = chosenText[chosenText.length - 1].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const chosenCity = `${chosenFirst}, ${chosenLast}`;
-  weatherDetails(chosenCity);
+  const label = document.querySelector('.city-search-form').firstChild;
+  if (label.getAttribute('data-validity') === 'true') {
+    const chosenText = document.querySelector('.city-search-input').value.split(', ');
+    // Remove accents
+    const chosenFirst = chosenText[0].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const chosenLast = chosenText[chosenText.length - 1].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const chosenCity = `${chosenFirst}, ${chosenLast}`;
+    weatherDetails(chosenCity);
+  }
 });
 
 let timeout;
