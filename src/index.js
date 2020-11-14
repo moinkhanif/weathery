@@ -57,7 +57,6 @@ const weatherDetails = async (place) => {
 const ami = async (e, instantPlace) => {
   const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options({ instantPlace }));
   const json = await resp.json();
-  console.log(json);
   const label = e.target.parentElement;
   const ul = label.childNodes[1];
   const cities = {};
@@ -68,7 +67,7 @@ const ami = async (e, instantPlace) => {
     errorLi.className = 'fetch-error';
     label.setAttribute('data-validity', 'false');
   } else {
-    label.setAttribute('data-validity', 'true')
+    label.setAttribute('data-validity', 'true');
     json.places.forEach(place => {
       const citySelect = ul.appendChild(document.createElement('li'));
       citySelect.textContent = place.display_name;
