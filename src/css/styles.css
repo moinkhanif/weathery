@@ -177,3 +177,44 @@ main {
 footer {
   min-height: 1vh;
 }
+
+@media screen and (min-width: 624px) {
+  main {
+    min-height: 80vh;
+  }
+
+  .main-nav {
+    background: none;
+    height: auto;
+    width: auto;
+    cursor: unset;
+  }
+
+  .main-nav ul {
+    position: static;
+    background: none;
+    overflow-x: visible;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    height: auto;
+  }
+
+  .city-search-form {
+    flex-direction: row;
+  }
+
+  .city-search-form label {
+    width: 90%;
+  }
+
+  .city-search-input {
+    width: 100%;
+  }
+
+  .city-search-form input[type="submit"] {
+    margin: 0;
+    max-width: 200px;
+    max-height: 60px;
+  }
+}
