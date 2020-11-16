@@ -19,10 +19,8 @@ const removeAllChildNodes = (parent) => {
   }
 };
 
-const showWeatherDetails = (weatherDetails) => {
-  const main = document.querySelector('main');
-  const weatherDiv = main.childNodes[1];
-  removeAllChildNodes(weatherDiv);
+const showWeatherDetails = (weatherDiv, weatherDetails) => {
+  weatherDiv.classList.remove('loader');
   if (weatherDetails.message) {
     const error = weatherDiv.appendChild(document.createElement('p'));
     error.className = 'fetch-error';
@@ -47,11 +45,11 @@ const showWeatherDetails = (weatherDetails) => {
   }
 };
 
-const weatherDetails = async (place) => {
+const weatherDetails = async (weatherDiv, place) => {
   const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options({ place }));
   const json = await resp.json();
   const { weatherInfo } = json;
-  showWeatherDetails(weatherInfo);
+  showWeatherDetails(weatherDiv, weatherInfo);
 };
 
 const ami = async (e, instantPlace) => {
@@ -95,7 +93,12 @@ document.querySelector('.city-search-form input[type="submit"]').addEventListene
     const chosenFirst = chosenText[0].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const chosenLast = chosenText[chosenText.length - 1].normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const chosenCity = `${chosenFirst}, ${chosenLast}`;
-    weatherDetails(chosenCity);
+    const main = document.querySelector('main');
+    const weatherDiv = main.childNodes[1];
+    weatherDiv.classList.add('loader');
+    removeAllChildNodes(weatherDiv);
+    weatherDiv.appendChild(document.createElement('div'));
+    weatherDetails(weatherDiv, chosenCity);
   }
 });
 
