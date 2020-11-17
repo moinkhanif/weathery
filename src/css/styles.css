@@ -27,7 +27,7 @@ header {
   width: 80vw;
   text-align: center;
   font-size: 1.7rem;
-  font-family: 'Merienda', cursive;
+  font-family: "Merienda", cursive;
 }
 
 .logo a,
@@ -58,6 +58,10 @@ header {
   transition: left 200ms;
   background-color: #fff;
   padding-top: 20px;
+}
+
+.main-nav a {
+  color: #c25b05;
 }
 
 .main-nav .nav-appear {
@@ -173,13 +177,23 @@ main {
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 footer {
