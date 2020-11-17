@@ -28,8 +28,7 @@ const listeners = {
   inputListener: (timeout) => {
     document.querySelector('.city-search-input').addEventListener('input', (e) => {
       clearTimeout(timeout);
-      const label = e.target.parentElement;
-      const ul = label.childNodes[1];
+      const ul = document.querySelector('.suggestions');
       const word = e.target.value;
       removeAllChildNodes(ul);
       if (word !== '' && word.length >= 2) {

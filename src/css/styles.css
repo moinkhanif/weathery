@@ -58,6 +58,7 @@ header {
   transition: left 200ms;
   background-color: #fff;
   padding-top: 20px;
+  z-index: 50;
 }
 
 .main-nav a {
@@ -83,8 +84,19 @@ header {
   margin: 50px auto;
 }
 
+.weather-div .initial-img {
+  width: 100%;
+  margin-top: 50px;
+}
+
 .info-div li {
   margin: 10px auto;
+}
+
+.city-search-form .suggestions {
+  position: absolute;
+  z-index: 10;
+  width: 74%;
 }
 
 .city-search-form label li {
@@ -110,7 +122,6 @@ main {
   flex-direction: column;
   max-height: 100%;
   transition: max-height 0.55s ease-out;
-  overflow-y: hidden;
 }
 
 .city-search-form.shrink {
@@ -233,6 +244,15 @@ footer {
 
   .city-search-form label {
     width: 90%;
+    position: relative;
+  }
+
+  .city-search-form .suggestions {
+    width: 100%;
+  }
+
+  .weather-div .initial-img {
+    width: 50%;
   }
 
   .city-search-input {

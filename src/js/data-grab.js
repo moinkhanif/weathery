@@ -6,7 +6,7 @@ const dataGrab = {
     const resp = await fetch('https://backend.moinkhanif.dev/api/v1/weathery', options({ instantPlace }));
     const json = await resp.json();
     const label = e.target.parentElement;
-    const ul = label.childNodes[1];
+    const ul = document.querySelector('.suggestions');
     const cities = {};
     removeAllChildNodes(ul);
     if (json.places.error) {
