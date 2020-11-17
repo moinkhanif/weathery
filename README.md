@@ -1,8 +1,8 @@
 # Weathery
 
-A web app that lets you check the weather forecast of any city.
-
 ![weatherly](./ss17112020.png)
+
+A web app that lets you check the weather forecast of any city. The project utilizes LocationIQ service for city suggestion and also Open Weather API to retrive the weather forecast and display the information to the website.
 
 ## Built With
 
