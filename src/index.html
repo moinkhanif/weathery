@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <title>Weatherly - A beautiful weather app</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="logo"><a href="./">Weatherly</a></h1>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <form class="city-search-form" action="#">
+        <label>
+          <textarea
+            class="city-search-input"
+            type="text"
+            placeholder="Enter city name..."
+            wrap="soft"
+            autofocus
+          ></textarea>
+          <ul class="suggestions"></ul>
+        </label>
+        <input type="submit" />
+      </form>
+      <div class="weather-div">
+        <img class="initial-img" src="./img/undraw_starry_window_ppm0.svg" alt="Man watching at the sky">
+      </div>
+    </main>
+    <footer>&copy;2020 Weatherly</footer>
+  </body>
+</html>
