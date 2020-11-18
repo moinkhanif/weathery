@@ -22,7 +22,7 @@ const utils = {
     if (weatherDetails.message) {
       const error = weatherDiv.appendChild(document.createElement('p'));
       error.className = 'fetch-error';
-      error.textContent = `Error! ${weatherDetails.message}`;
+      error.textContent = 'Error! City temperature unavailable.';
     } else {
       const placeTitle = weatherDiv.appendChild(document.createElement('h2'));
       placeTitle.textContent = weatherDetails.name;
