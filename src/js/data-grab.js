@@ -1,5 +1,6 @@
+import { options, removeAllChildNodes, showWeatherDetails } from './dom-utils';
+
 const fetch = require('node-fetch');
-const { removeAllChildNodes, options, showWeatherDetails } = require('./dom-utils');
 
 const dataGrab = {
   autoComplete: async (e, instantPlace) => {

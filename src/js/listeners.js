@@ -1,5 +1,6 @@
-const { weatherDetails, autoComplete } = require('./data-grab');
-const { removeAllChildNodes, removeAccent } = require('./dom-utils');
+// eslint-disable-next-line import/named
+import { weatherDetails, autoComplete } from './data-grab';
+import { removeAllChildNodes, removeAccent } from './dom-utils';
 
 const listeners = {
   menuListener: () => {
