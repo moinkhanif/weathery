@@ -143,6 +143,8 @@ main {
 .city-search-input {
   word-wrap: break-word;
   word-break: break-all;
+  max-height: 100px;
+  resize: vertical;
 }
 
 .city-search-form input[type="submit"] {
@@ -257,7 +259,7 @@ footer {
   }
 
   .city-search-input {
-    width: 100%;
+    max-width: 100%;
   }
 
   .city-search-form input[type="submit"] {
