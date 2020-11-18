@@ -147,6 +147,13 @@ main {
   resize: vertical;
 }
 
+.city-search-input:focus,
+.city-search-form input:focus {
+  /* border: 2px solid #c25b05; */
+  box-shadow: 0 0 10px #c25b05;
+  outline: none;
+}
+
 .city-search-form input[type="submit"] {
   margin-top: 20px;
   cursor: pointer;
