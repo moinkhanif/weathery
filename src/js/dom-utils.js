@@ -16,6 +16,7 @@ const utils = {
     li.innerHTML = message;
     return li;
   },
+  convertToFahrenheit: (val) => Math.round(((val * 1.8) + 32) * 10) / 10,
   showWeatherDetails: (weatherDiv, weatherDetails) => {
     weatherDiv.classList.remove('loader');
     if (weatherDetails.message) {
@@ -33,7 +34,22 @@ const utils = {
 
       const infoDiv = weatherDiv.appendChild(document.createElement('ul'));
       infoDiv.classList.add('info-div');
-      utils.createLi(infoDiv, `<b>Temperature</b>: ${weatherDetails.main.temp}°C`);
+      const temperature = utils.createLi(infoDiv, `<b>Temperature</b>: <span class="temperature">${weatherDetails.main.temp}°C</span>`);
+      const tempToggle = temperature.appendChild(document.createElement('span'));
+      tempToggle.classList.add('temp-toggle');
+      tempToggle.setAttribute('title', 'Toggle Temperature Unit');
+      tempToggle.setAttribute('data-temp', 'C');
+      tempToggle.addEventListener('click', () => {
+        if (tempToggle.getAttribute('data-temp') === 'C') {
+          temperature.querySelector('.temperature').innerHTML = `${utils.convertToFahrenheit(weatherDetails.main.temp)}°F`;
+          tempToggle.setAttribute('data-temp', 'F');
+        } else {
+          temperature.querySelector('.temperature').innerHTML = `${weatherDetails.main.temp}°C`;
+          tempToggle.setAttribute('data-temp', 'C');
+        }
+      });
+      tempToggle.appendChild(document.createElement('span')).textContent = 'C';
+      tempToggle.appendChild(document.createElement('span')).textContent = 'F';
       utils.createLi(infoDiv, `<b>Weather description</b>: ${weatherDetails.weather[0].description}`);
       utils.createLi(infoDiv, `<b>Wind Speed</b>: ${weatherDetails.wind.speed}m/s`);
     }

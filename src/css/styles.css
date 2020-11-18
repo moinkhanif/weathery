@@ -149,7 +149,6 @@ main {
 
 .city-search-input:focus,
 .city-search-form input:focus {
-  /* border: 2px solid #c25b05; */
   box-shadow: 0 0 10px #c25b05;
   outline: none;
 }
@@ -193,6 +192,41 @@ main {
   width: 200px;
   background-color: #3498db;
   margin: auto;
+}
+
+.temp-toggle {
+  margin-left: 20px;
+  border-radius: 10px;
+  padding: 3px 0;
+  background-color: #c25b05;
+  cursor: pointer;
+  position: relative;
+}
+
+.temp-toggle > span {
+  border-radius: 100%;
+  height: 20px;
+  padding: 0 5px;
+  width: 20px;
+  display: inline-block;
+  background: #fff8ee;
+}
+
+.temp-toggle::after {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-color: #c25b05;
+  border-radius: 100%;
+}
+
+.temp-toggle[data-temp="C"]::after {
+  right: 0;
+}
+
+.temp-toggle[data-temp="F"]::after {
+  left: 0;
 }
 
 /* Safari */
